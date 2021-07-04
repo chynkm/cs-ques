@@ -12,7 +12,6 @@
 # odd socks left, one of each color. The number of pairs is .
 
 
-
 def sockMerchant(n, ar):
     sock_count = {}
     pairs = 0
@@ -25,6 +24,7 @@ def sockMerchant(n, ar):
 
     return pairs
 
+
 def sockMerchant1(n, ar):
     sock_count = {}
     for i in ar:
@@ -35,6 +35,7 @@ def sockMerchant1(n, ar):
         pairs = pairs + (i // 2)
 
     return pairs
+
 
 n = 9
 ar = [10, 20, 20, 10, 10, 30, 50, 10, 20]
