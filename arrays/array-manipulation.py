@@ -8,6 +8,23 @@ def arrayManipulation(n, queries):
     return max(l)
 
 
+def arrayManipulation1(n, queries):
+    l = [0] * n
+    max_val = tot = 0
+
+    for i in queries:
+        l[i[0]-1] += i[2]
+        if i[1] < len(l):
+            l[i[1]] -= i[2]
+
+    for i in l:
+        tot += i
+        if tot > max_val:
+            max_val = tot
+
+    return max_val
+
+
 n = 5
 queries = [
     [1, 2, 100],
@@ -22,4 +39,6 @@ queries = [
     [6, 9, 1],
 ]
 
-print(arrayManipulation(n, queries))
+print(arrayManipulation1(n, queries))
+
+# Ref: https://youtu.be/hDhf04AJIRs
