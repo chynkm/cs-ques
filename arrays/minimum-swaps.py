@@ -1,10 +1,11 @@
 def minimumSwaps(arr):
     swaps = 0
-    for i in range(len(arr)):
-        for j in range(i+1, len(arr)):
-            if arr[j] != j+1 and arr[i] > arr[j]:
-                swaps += 1
-                arr[i], arr[j] = arr[j], arr[i]
+    a = dict(enumerate(arr, 1))
+    for k, v in a.items():
+        if k != v:
+            a[v], a[k] = v, a[v]
+            swaps += 1
+
     return swaps
 
 
