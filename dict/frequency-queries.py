@@ -1,4 +1,7 @@
-def freqQuery(queries):
+from collections import Counter
+
+
+def freqQuery1(queries):
     my_dict = {}
     output = []
     for k, v in queries:
@@ -24,6 +27,48 @@ def int_freq(my_dict, v):
         if count == v:
             return 1
     return 0
+
+
+def freqQuery2(queries):
+    my_dict = {}
+    output = []
+    for k, v in queries:
+        if k == 1:
+            if v in my_dict:
+                my_dict[v] += 1
+            else:
+                my_dict[v] = 1
+        elif k == 2:
+            if v in my_dict:
+                my_dict[v] -= 1
+                if my_dict[v] == 0:
+                    del my_dict[v]
+        else:
+            if v in my_dict.values():
+                output.append(1)
+            else:
+                output.append(0)
+
+    return output
+
+
+def freqQuery(queries):
+    my_dict = Counter()
+    my_values_dict = {}
+    output = []
+    for k, v in queries:
+        if k == 1:
+            my_dict[v] += 1
+        elif k == 2:
+            if my_dict[v] > 0:
+                my_dict[v] -= 1
+        else:
+            if v in my_dict.values():
+                output.append(1)
+            else:
+                output.append(0)
+
+    return output
 
 
 queries = [
