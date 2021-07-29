@@ -52,21 +52,54 @@ def freqQuery2(queries):
     return output
 
 
-def freqQuery(queries):
+def freqQuery3(queries):
     my_dict = Counter()
-    my_values_dict = {}
+    my_values_dict = Counter()
     output = []
     for k, v in queries:
         if k == 1:
+            if my_values_dict[my_dict[v]] > 0:
+                my_values_dict[my_dict[v]] -= 1
+
             my_dict[v] += 1
+            my_values_dict[my_dict[v]] += 1
+
         elif k == 2:
             if my_dict[v] > 0:
+                if my_values_dict[my_dict[v]] > 0:
+                    my_values_dict[my_dict[v]] -= 1
+
                 my_dict[v] -= 1
+                if my_dict[v] > 0:
+                    my_values_dict[my_dict[v]] += 1
+
         else:
-            if v in my_dict.values():
+            if my_values_dict[v] > 0:
                 output.append(1)
             else:
                 output.append(0)
+
+    return output
+
+
+def freqQuery(queries):
+    my_dict = Counter()
+    my_values_dict = Counter()
+    output = []
+    for k, v in queries:
+        if k == 1:
+            my_values_dict[my_dict[v]] -= 1
+            my_dict[v] += 1
+            my_values_dict[my_dict[v]] += 1
+
+        elif k == 2:
+            if my_dict[v] > 0:
+                my_values_dict[my_dict[v]] -= 1
+                my_dict[v] -= 1
+                my_values_dict[my_dict[v]] += 1
+
+        else:
+            output.append(1 if my_values_dict[v] > 0 else 0)
 
     return output
 
@@ -114,3 +147,20 @@ queries = [
 
 for query in queries:
     print(freqQuery(query))
+
+# if __name__ == '__main__':
+#     fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+#     q = int(input().strip())
+
+#     queries = []
+
+#     for _ in range(q):
+#         queries.append(list(map(int, input().rstrip().split())))
+
+#     ans = freqQuery(queries)
+
+#     fptr.write('\n'.join(map(str, ans)))
+#     fptr.write('\n')
+
+#     fptr.close()
