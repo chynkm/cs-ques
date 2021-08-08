@@ -7,7 +7,7 @@ class Player:
         self.score = score
 
     def __repr__(self):
-        return self.name+' '+self.score
+        return f'Person(name={self.name}, score={self.score})'
 
     def comparator(a, b):
         if a.score < b.score:
